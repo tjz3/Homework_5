@@ -20,12 +20,15 @@ balt_homicidesv1 <- read.csv("../data/homicide.csv") %>%
   mutate(city_name = paste(city, state, sep = ", ")) %>%
   filter(city_name == "Baltimore, MD") %>%
   mutate(date = ymd(reported_date))
-balt_homicidesv2 <- balt_homicides %>%
-  mutate(month_year = format(as.Date(balt_homicides$date), "%Y-%m")) %>%
+balt_homicidesv2 <- balt_homicidesv1 %>%
+  mutate(month_year = format(as.Date(balt_homicidesv1$date), "%Y-%m")) %>%
   mutate(month = month(date)) %>%
-  mutate(winter_month = month %in% c(1:4, 11, 12)) %>%
+  mutate(winter_month = month %in% c(1:4, 11, 12))
+balt_homicidesv3 <- balt_homicidesv2 %>%
   group_by(month_year) %>%
-  mutate(total_homicides = summarize(count(uid)))
+  count(name = "total_homicides") %>%
+  ungroup()
+tidy(balt_homicidesv2)
 ```
 
 ```{r include = FALSE}
