@@ -11,12 +11,15 @@ library(tidyverse)
 library(knitr)
 library(broom)
 library(readr)
+library(lubridate)
 ```
 
 ```{r include = FALSE}
 # loading and cleaning data
-balt_homicides <- read.csv("data/homicide.csv")
+balt_homicides <- read.csv("../data/homicide.csv") %>%
   mutate(city_name = paste(city, state, sep = ", ")) %>%
-  filter(city_name == "Baltimore, MD")
+  filter(city_name == "Baltimore, MD") %>%
+  mutate(date = ymd(reported_date))
+balt_homicides <- balt_homicides %>%
+  mutate(month_year = format(as.Date(balt_homicides$date), "%Y-%m"))
 ```
-
