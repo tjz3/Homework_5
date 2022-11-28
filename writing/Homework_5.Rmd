@@ -25,14 +25,14 @@ balt_homicidesv2 <- balt_homicidesv1 %>%
   mutate(month = month(date)) %>%
   mutate(winter_month = month %in% c(1:4, 11, 12))
 balt_homicidesv3 <- balt_homicidesv2 %>%
-  group_by(month_year) %>%
+  group_by(month_year, winter_month) %>%
   count(name = "total_homicides") %>%
   ungroup()
-tidy(balt_homicidesv2)
 ```
 
 ```{r include = FALSE}
 # creating the graph
-
+balt_homicide_plot <- balt_homicidev3 %>%
+  
 ```
 
