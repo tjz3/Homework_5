@@ -30,11 +30,15 @@ balt_homicidesv3 <- balt_homicidesv2 %>%
   ungroup()
 ```
 
-```{r include = FALSE, fig.height = 4, fig.width = 8}
+```{r include = FALSE, fig.height = 2, fig.width = 10}
 # creating the graph
 balt_homicide_plot <- balt_homicidesv3 %>%
   ggplot() +
-  geom_col(aes(x = month_year, y = total_homicides, fill = winter_month))
+  geom_col(aes(x = month_year, y = total_homicides, fill = winter_month)) + 
+  scale_fill_manual(values = c("grey", "skyblue")) +
+  theme_dark() +
+  labs(title = "Homicides in Baltimore, MD", x = "Date", 
+       y = "Monthly homicides", fill = "")
 balt_homicide_plot
 ```
 
