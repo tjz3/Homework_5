@@ -12,6 +12,7 @@ library(knitr)
 library(broom)
 library(readr)
 library(lubridate)
+library(scales)
 ```
 
 ```{r include = FALSE}
@@ -41,7 +42,8 @@ balt_homicide_plot <- balt_homicidesv3 %>%
   geom_col(aes(x = month_year, y = total_homicides, fill = winter_month)) + 
   geom_vline(aes(xintercept = "2015-04", colour = "red"), show.legend = FALSE, 
              size = 2, linetype = 2) +
-  scale_fill_manual(values = c("grey", "skyblue")) +
+  scale_fill_manual(values = c("grey", "skyblue"), 
+                    labels = c("Summer", "Winter")) +
   theme_dark() +
   labs(title = "Homicides in Baltimore, MD", x = "Date", 
        y = "Monthly homicides", fill = "")
