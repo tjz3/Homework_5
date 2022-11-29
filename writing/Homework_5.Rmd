@@ -30,11 +30,17 @@ balt_homicidesv3 <- balt_homicidesv2 %>%
   ungroup()
 ```
 
+```{r}
+freddie <- tibble(month_year = "2015-04")
+```
+
 ```{r include = FALSE, fig.height = 2, fig.width = 10}
 # creating the graph
 balt_homicide_plot <- balt_homicidesv3 %>%
   ggplot() +
   geom_col(aes(x = month_year, y = total_homicides, fill = winter_month)) + 
+  geom_vline(aes(xintercept = "2015-04", colour = "red"), show.legend = FALSE, 
+             size = 2, linetype = 2) +
   scale_fill_manual(values = c("grey", "skyblue")) +
   theme_dark() +
   labs(title = "Homicides in Baltimore, MD", x = "Date", 
