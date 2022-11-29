@@ -35,7 +35,7 @@ balt_homicidesv3 <- balt_homicidesv2 %>%
 freddie <- tibble(month_year = "2015-04")
 ```
 
-```{r include = FALSE, fig.height = 2, fig.width = 10}
+```{r include = FALSE, fig.height = 2.5, fig.width = 8}
 # creating the graph
 balt_homicide_plot <- balt_homicidesv3 %>%
   ggplot() +
@@ -44,9 +44,11 @@ balt_homicide_plot <- balt_homicidesv3 %>%
              size = 2, linetype = 2) +
   scale_fill_manual(values = c("grey", "skyblue"), 
                     labels = c("Summer", "Winter")) +
+  annotate(geom = "text", x = "2014-05", y = 43, label = "Arrest of Freddie Gray", color = "White") +
   theme_dark() +
+  theme(legend.position = "bottom") +
   labs(title = "Homicides in Baltimore, MD", x = "Date", 
-       y = "Monthly homicides", fill = "")
+       y = "Monthly homicides", fill = "") 
 balt_homicide_plot
 ```
 
