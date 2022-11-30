@@ -48,5 +48,6 @@ balt_homicide_plot <- balt_homicidesv3 %>%
   labs(title = "Homicides in Baltimore, MD", x = "Date", 
        y = "Monthly homicides", fill = "")
 balt_homicide_plot
+ggsave("Baltimore, MD Homicides.png", path = "../figures", width = 12, height = 4)
 ```
 
